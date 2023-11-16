@@ -1,7 +1,9 @@
 mod scrapper;
+use scrapper::bitpanda_format;
 
-use scrapper::test_scrap;
+use tokio;
 
-fn main() {
-    test_scrap();
+#[tokio::main]
+async fn main() {
+    bitpanda_format().await;
 }

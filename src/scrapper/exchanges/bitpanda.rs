@@ -1,3 +1,8 @@
+extern crate colorful;
+use colorful::Color;
+use colorful::Colorful;
+
 pub fn test_bitpanda() {
-    println!("test bitpanda shit")
+    let test_color = "test scrapper shit.";
+    println!("{}", test_color.color(Color::Red).bold());
 }

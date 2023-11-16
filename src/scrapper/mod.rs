@@ -19,13 +19,23 @@ pub async fn bitpanda_format() {
             let name_string = bitpanda_component.name.unwrap().trim().to_string();
             let status_string = bitpanda_component.status.unwrap().trim().to_string();
 
-            println!(
-                "{} || {}",
-                name_string.color(Color::Green).bold(),
-                status_string.color(Color::Red).bold(),
-            );
+            match status_string.as_str() {
+                "Operational" => {
+                    println!(
+                        "{} || {}",
+                        name_string,
+                        status_string.color(Color::Green).bold(),
+                    );
+                }
+                _ => {
+                    println!(
+                        "{} || {}",
+                        name_string,
+                        status_string.color(Color::Red).bold(),
+                    );
+                }
+            }
         } else {
-            ()
         }
     }
 }

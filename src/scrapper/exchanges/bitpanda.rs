@@ -33,7 +33,7 @@ pub async fn get_bitpanda_data() -> Result<Vec<BitpandaComponent>, Box<dyn std::
     let mut bitpanda_components: Vec<BitpandaComponent> = Vec::new();
 
     for element in document.select(&selector) {
-        let name_selector = Selector::parse(".name span:last-child").unwrap();
+        let name_selector = Selector::parse(".name").unwrap();
         let status_selector = Selector::parse(".component-status").unwrap();
 
         let mut bitpanda_component = BitpandaComponent::new();

@@ -1,7 +1,9 @@
 mod scrapper;
-use scrapper::bitpanda_format;
+use scrapper::exchanges::bitpanda::Bitpanda;
+use scrapper::format_output;
 
 #[tokio::main]
 async fn main() {
-    bitpanda_format().await;
+    let bitpanda = Bitpanda;
+    format_output(&bitpanda).await;
 }

@@ -1,3 +1,7 @@
+use async_trait::async_trait;
+use std::fmt::Debug;
+
+#[derive(Debug, Default)]
 pub struct ExchangeURLs {
     pub bitpanda: &'static str,
 }
@@ -10,24 +14,22 @@ impl ExchangeURLs {
     }
 }
 
-pub trait ExchangeConfig {
-    fn get_component() -> &'static str;
-    fn get_name_selector() -> &'static str;
-    fn get_status_selector() -> &'static str;
+#[derive(Debug, Default)]
+pub struct ServiceStatus {
+    pub name: Option<String>,
+    pub status: Option<String>,
 }
 
-pub struct BitpandaConfig;
-
-impl ExchangeConfig for BitpandaConfig {
-    fn get_component() -> &'static str {
-        ".component-inner-container"
+impl ServiceStatus {
+    pub fn new() -> Self {
+        ServiceStatus {
+            name: None,
+            status: None,
+        }
     }
+}
 
-    fn get_name_selector() -> &'static str {
-        ".name"
-    }
-
-    fn get_status_selector() -> &'static str {
-        ".component-status"
-    }
+#[async_trait]
+pub trait Exchange {
+    async fn get_data(&self) -> Result<Vec<ServiceStatus>, Box<dyn std::error::Error>>;
 }

@@ -1,4 +1,4 @@
-use super::config::{BitpandaConfig, ExchangeConfig};
+use super::config::{BitpandaConfig, ExchangeConfig, ExchangeURLs};
 use reqwest;
 use reqwest::Client;
 use scraper::{Html, Selector};
@@ -20,7 +20,8 @@ impl BitpandaComponent {
 }
 
 pub async fn get_bitpanda_data() -> Result<Vec<BitpandaComponent>, Box<dyn std::error::Error>> {
-    let url = "https://status.bitpanda.com/";
+    let urls = ExchangeURLs::new();
+    let url = urls.bitpanda;
 
     let reqwest_client = Client::new();
     let response = reqwest_client.get(url).send().await?;

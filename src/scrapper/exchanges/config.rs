@@ -1,3 +1,15 @@
+pub struct ExchangeURLs {
+    pub bitpanda: &'static str,
+}
+
+impl ExchangeURLs {
+    pub fn new() -> Self {
+        ExchangeURLs {
+            bitpanda: "https://status.bitpanda.com/",
+        }
+    }
+}
+
 pub trait ExchangeConfig {
     fn get_component() -> &'static str;
     fn get_name_selector() -> &'static str;
